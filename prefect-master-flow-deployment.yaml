@@ -1,0 +1,81 @@
+###
+### A complete description of a Prefect Deployment for flow 'master-flow'
+###
+name: master__flow
+description: null
+version: 976e5fcb3cb4592dca8fa0b13e610965
+# The work queue that will handle this deployment's runs
+work_queue_name: default
+work_pool_name: default-agent-pool
+tags: []
+parameters: {}
+schedule:
+  interval: 30.0
+  anchor_date: '2023-02-03T13:56:06.875000+00:00'
+  timezone: UTC
+is_schedule_active: false
+infra_overrides: {}
+
+###
+### DO NOT EDIT BELOW THIS LINE
+###
+flow_name: master-flow
+manifest_path: null
+infrastructure:
+  type: cloud-run-job
+  env: {}
+  labels: {}
+  name: null
+  command: null
+  image: europe-west6-docker.pkg.dev/bus-tracking-376121/bus-tracking/bus-tracker:v1
+  region: europe-west6
+  credentials:
+    service_account_file: null
+    service_account_info:
+      type: '**********'
+      auth_uri: '**********'
+      client_id: '**********'
+      token_uri: '**********'
+      project_id: '**********'
+      private_key: '**********'
+      client_email: '**********'
+      private_key_id: '**********'
+      client_x509_cert_url: '**********'
+      auth_provider_x509_cert_url: '**********'
+    project: bus-tracking-376121
+    _service_account_email: bus-tracking@bus-tracking-376121.iam.gserviceaccount.com
+    _block_document_id: 470b7293-c1eb-485f-a0d4-989c35484403
+    _block_document_name: bus-tracker-gcs-creds
+    _is_anonymous: false
+    block_type_slug: gcp-credentials
+  cpu: null
+  memory: 4
+  memory_unit: G
+  vpc_connector_name: null
+  args: null
+  keep_job: false
+  timeout: 600
+  _block_document_id: 24b39bfe-9779-49c2-9ae0-fdc3f676bd92
+  _block_document_name: bus-tracker-cloudrun
+  _is_anonymous: false
+  block_type_slug: cloud-run-job
+  _block_type_slug: cloud-run-job
+storage:
+  repository: https://github.com/RyanEricLamb/bus_tracker
+  reference: null
+  access_token: '**********'
+  include_git_objects: true
+  _block_document_id: 98ac681a-d6bc-4137-a018-092414a98acc
+  _block_document_name: bus-tracker
+  _is_anonymous: false
+  block_type_slug: github
+  _block_type_slug: github
+path: ''
+entrypoint: master_flow.py:master_flow
+parameter_openapi_schema:
+  title: Parameters
+  type: object
+  properties: {}
+  required: null
+  definitions: null
+timestamp: '2023-02-03T15:10:35.947791+00:00'
