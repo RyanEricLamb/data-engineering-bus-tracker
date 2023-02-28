@@ -159,7 +159,7 @@ greenlet==2.0.2
     # via sqlalchemy
 griffe==0.25.4
     # via prefect
-grpcio==1.51.1
+grpcio==1.48.2
     # via
     #   google-api-core
     #   google-cloud-bigquery
