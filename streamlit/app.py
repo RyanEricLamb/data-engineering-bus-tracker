@@ -13,30 +13,29 @@ def refresh_map():
 
     now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
 
-    # # Create API client for gcs bucket
-    # credentials = service_account.Credentials.from_service_account_info(
-    #     st.secrets["gcp_service_account"]
-    # )
-    # client = storage.Client(credentials=credentials)
+    # Create API client for gcs bucket
+    credentials = service_account.Credentials.from_service_account_info(
+        st.secrets["gcp_service_account"]
+    )
+    client = storage.Client(credentials=credentials)
 
     m = folium.Map(location=[53.799, -1.549], tiles="Stamen Terrain", zoom_start=11.5)
 
-    # def read_file(bucket_name, file_path):
-    #     """Get bucket content"""
+    def read_file(bucket_name, file_path):
+        """Get bucket content"""
 
-    #     bucket = client.bucket(bucket_name)
-    #     content = bucket.blob(file_path).download_as_string().decode("utf-8")
-    #     return content
+        bucket = client.bucket(bucket_name)
+        content = bucket.blob(file_path).download_as_string().decode("utf-8")
+        return content
 
     def get_df_from_bucket():
         """Reads the bucket csv and converts to dataframe"""
 
         bucket_name = "bus-tracking-376121-bus_data"
-        file_path = "late_buses_e.csv"
+        file_path = "late_buses.csv"
 
-        # data = read_file(bucket_name, file_path)
-        # df = pd.read_csv(StringIO(data))
-        df = pd.read_csv(file_path)
+        data = read_file(bucket_name, file_path)
+        df = pd.read_csv(StringIO(data))
 
         return df
 
