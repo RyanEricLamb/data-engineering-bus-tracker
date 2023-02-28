@@ -79,16 +79,16 @@ def refresh_map():
     st.subheader(
         f"_Number of buses currently more than 10 minutes late:_ {number_of_late_buses}",
     )
-    st.write(f"Source data: [Bus Open Data](https://data.bus-data.dft.gov.uk/)")
-    st.text(
+    st.write(
         f"[Project GitHub](https://github.com/RyanEricLamb/data-engineering-bus-tracker)"
     )
-    st.text(f"Project walkthrough:")
-    st.text(f"Click the refresh button below to update")
+    st.write(f"[Project walkthrough]")
+    st.write(f"[Source data](https://data.bus-data.dft.gov.uk/)")
+    st.text(f"Click refresh below to update")
 
     st_data = st_folium(m, width=725, returned_objects=[])
 
-    st.text("Data will update approximately every 2 minutes")
+    st.text("Updates every 2 minutes")
     st.text(f"Last refreshed: {now} UTC")
 
 
