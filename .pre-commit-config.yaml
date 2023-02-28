@@ -5,7 +5,7 @@ repos:
         name: black
         stages: [commit]
         language: system
-        entry: black .
+        entry: black etl/.
         types: [python]
 
       # - id: flake8

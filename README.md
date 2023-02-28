@@ -1,10 +1,9 @@
-# Rugby score prediction
-An end-to-end data engineering project with Prefect, Docker, Terraform, Google CloudRun, BigQuery and Streamlit
+# An end-to-end data engineering project with Prefect, Docker, Terraform, Google CloudRun, BigQuery and Streamlit
 
 <p align="center"><img src="rugby_app.gif" width="450"></p>
 
 ## Overview
-An demo data engineering project to provide a high-level overview of the key steps needed in going from raw data to a live web app.
+A demo data engineering project to provide an overview of the key steps in going from raw data to a live web app. Uses UK Open Bus data to calculate late buses in realtime for any selected region.
 
 ### What is covered
 - Creating and managing cloud resources with Terraform.

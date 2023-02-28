@@ -13,29 +13,30 @@ def refresh_map():
 
     now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
 
-    # Create API client for gcs bucket
-    credentials = service_account.Credentials.from_service_account_info(
-        st.secrets["gcp_service_account"]
-    )
-    client = storage.Client(credentials=credentials)
+    # # Create API client for gcs bucket
+    # credentials = service_account.Credentials.from_service_account_info(
+    #     st.secrets["gcp_service_account"]
+    # )
+    # client = storage.Client(credentials=credentials)
 
     m = folium.Map(location=[53.799, -1.549], tiles="Stamen Terrain", zoom_start=11.5)
 
-    def read_file(bucket_name, file_path):
-        """Get bucket content"""
+    # def read_file(bucket_name, file_path):
+    #     """Get bucket content"""
 
-        bucket = client.bucket(bucket_name)
-        content = bucket.blob(file_path).download_as_string().decode("utf-8")
-        return content
+    #     bucket = client.bucket(bucket_name)
+    #     content = bucket.blob(file_path).download_as_string().decode("utf-8")
+    #     return content
 
     def get_df_from_bucket():
         """Reads the bucket csv and converts to dataframe"""
 
         bucket_name = "bus-tracking-376121-bus_data"
-        file_path = "late_buses.csv"
+        file_path = "late_buses_e.csv"
 
-        data = read_file(bucket_name, file_path)
-        df = pd.read_csv(StringIO(data))
+        # data = read_file(bucket_name, file_path)
+        # df = pd.read_csv(StringIO(data))
+        df = pd.read_csv(file_path)
 
         return df
 
@@ -54,31 +55,37 @@ def refresh_map():
 
         return marker
 
-    df = get_df_from_bucket()
-    number_of_late_buses = df["trip_id"].count()
+    try:
+        df = get_df_from_bucket()
+        number_of_late_buses = df["trip_id"].count()
 
-    for idx, row in df.iterrows():
+        for idx, row in df.iterrows():
 
-        lat = row["stop_lat"]
-        long = row["stop_lon"]
-        stop = row["stop_name"]
-        route = row["route_short_name"] + " - " + row["trip_headsign"]
-        vehicle = row["vehicle"]
-        scheduled_time = row["arrival_time_fixed"].split("+", 1)[0]
-        actual_time = row["timestamp"].split("+", 1)[0]
+            lat = row["stop_lat"]
+            long = row["stop_lon"]
+            stop = row["stop_name"]
+            route = row["route_short_name"] + " - " + row["trip_headsign"]
+            vehicle = row["vehicle"]
+            scheduled_time = row["arrival_time_fixed"].split("+", 1)[0]
+            actual_time = row["timestamp"].split("+", 1)[0]
 
-        marker = create_marker(
-            lat, long, route, stop, vehicle, scheduled_time, actual_time
-        )
-        marker.add_to(m)
+            marker = create_marker(
+                lat, long, route, stop, vehicle, scheduled_time, actual_time
+            )
+            marker.add_to(m)
+    except:
+        number_of_late_buses = 0
 
     st.title("First Bus Leeds delays🚍")
     st.subheader(
         f"_Number of buses currently more than 10 minutes late:_ {number_of_late_buses}",
     )
     st.write(f"Source data: [Bus Open Data](https://data.bus-data.dft.gov.uk/)")
-    st.text(f"Project GitHub: ")
+    st.text(
+        f"[Project GitHub](https://github.com/RyanEricLamb/data-engineering-bus-tracker)"
+    )
     st.text(f"Project walkthrough:")
+    st.text(f"Click the refresh button below to update")
 
     st_data = st_folium(m, width=725, returned_objects=[])
 
