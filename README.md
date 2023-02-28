@@ -1,9 +1,9 @@
 # An end-to-end data engineering project with Prefect, Docker, Terraform, Google CloudRun, BigQuery and Streamlit
 
-<p align="center"><img src="rugby_app.gif" width="450"></p>
+<p align="center"><img src="app_demo.png"></p>
 
 ## Overview
-A demo data engineering project to provide an overview of the key steps in going from raw data to a live web app. Uses UK Open Bus data to calculate late buses in realtime for any selected region.
+A demo data engineering project covering the key steps in going from raw data to a live web app. Uses UK Open Bus data to calculate late buses in realtime for any selected region.
 
 ### What is covered
 - Creating and managing cloud resources with Terraform.
@@ -16,4 +16,4 @@ A demo data engineering project to provide an overview of the key steps in going
 - Setting up the Prefect agent on a Compute Instance.
 - Creating a data visualisation app with Streamlit.
 
-Read more here: 
+Full project walkthrough here: https://medium.com/@ryanelamb
