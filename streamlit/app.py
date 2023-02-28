@@ -82,7 +82,7 @@ def refresh_map():
     st.write(
         f"[Project GitHub](https://github.com/RyanEricLamb/data-engineering-bus-tracker)"
     )
-    st.write(f"[Project walkthrough]")
+    st.write(f"[Project walkthrough](https://medium.com/@ryanelamb)")
     st.write(f"[Source data](https://data.bus-data.dft.gov.uk/)")
     st.text(f"Click refresh below to update")
 
