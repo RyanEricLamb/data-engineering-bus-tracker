@@ -71,11 +71,11 @@ storage:
   block_type_slug: github
   _block_type_slug: github
 path: ''
-entrypoint: master_flow.py:master_flow
+entrypoint: etl\master_flow.py:master_flow
 parameter_openapi_schema:
   title: Parameters
   type: object
   properties: {}
   required: null
   definitions: null
-timestamp: '2023-02-03T15:10:35.947791+00:00'
+timestamp: '2023-02-28T15:00:09.743105+00:00'
