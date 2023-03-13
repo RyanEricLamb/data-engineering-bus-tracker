@@ -16,4 +16,4 @@ A demo data engineering project covering the key steps to go from raw data to a 
 - Setting up the Prefect agent on a Compute Instance.
 - Creating a data visualisation app with Streamlit.
 
-Full project walkthrough [here][https://medium.com/@ryanelamb/a-data-engineering-project-with-prefect-docker-terraform-google-cloudrun-bigquery-and-ae37f7314ebb]
+Full project walkthrough [here](https://medium.com/@ryanelamb/a-data-engineering-project-with-prefect-docker-terraform-google-cloudrun-bigquery-and-ae37f7314ebb)
