@@ -3,7 +3,7 @@
 <p align="center"><img src="app_demo.png"></p>
 
 ## Overview
-A demo data engineering project covering the key steps to go from raw data to a live web app. Uses UK Open Bus Data to calculate late buses in real-time for any selected region.
+A demo data engineering project covering the key steps to go from raw data to a live web app. Uses [UK Open Bus Data](https://data.bus-data.dft.gov.uk/) to calculate late buses in real-time for any selected region in England.
 
 ### What is covered
 - Creating and managing cloud resources with Terraform.
@@ -16,4 +16,4 @@ A demo data engineering project covering the key steps to go from raw data to a 
 - Setting up the Prefect agent on a Compute Instance.
 - Creating a data visualisation app with Streamlit.
 
-Full project walkthrough [here](https://medium.com/@ryanelamb/a-data-engineering-project-with-prefect-docker-terraform-google-cloudrun-bigquery-and-ae37f7314ebb?source=friends_link&sk=a2abdd0138ad08949d31bb0e03b3639c)
+A full project walkthrough can be found [here](https://medium.com/@ryanelamb/a-data-engineering-project-with-prefect-docker-terraform-google-cloudrun-bigquery-and-streamlit-3fc6e08b9398?source=friends_link&sk=c83c07681d2af63d8292c2bac9e4287a)
