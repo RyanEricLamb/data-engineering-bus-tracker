@@ -58,7 +58,7 @@ def refresh_map():
         # Uncomment this when going live to read csv file from GCP
         # df = get_df_from_bucket()
         # Remove this when going live
-        df = pd.read_csv("../late_buses.csv")
+        df = pd.read_csv("late_buses.csv")
 
         number_of_late_buses = df["trip_id"].count()
 
