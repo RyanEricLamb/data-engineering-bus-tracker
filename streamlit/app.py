@@ -55,7 +55,11 @@ def refresh_map():
         return marker
 
     try:
-        df = get_df_from_bucket()
+        # Uncomment this when going live to read csv file from GCP
+        # df = get_df_from_bucket()
+        # Remove this when going live
+        df = pd.read_csv("../late_buses.csv")
+
         number_of_late_buses = df["trip_id"].count()
 
         for idx, row in df.iterrows():
@@ -68,21 +72,28 @@ def refresh_map():
             scheduled_time = row["arrival_time_fixed"].split("+", 1)[0]
             actual_time = row["timestamp"].split("+", 1)[0]
 
-            marker = create_marker(
-                lat, long, route, stop, vehicle, scheduled_time, actual_time
-            )
-            marker.add_to(m)
-    except:
+            try:
+                marker = create_marker(
+                    lat, long, route, stop, vehicle, scheduled_time, actual_time
+                )
+                marker.add_to(m)
+            except:
+                print("adding marker failed")
+    except Exception as e:
+        print(e)
         number_of_late_buses = 0
 
     st.title("First Bus Leeds delays🚍")
     st.subheader(
-        f"_Number of buses currently more than 10 minutes late:_ {number_of_late_buses}",
+        f"Number of buses currently more than 10 minutes late: {number_of_late_buses}",
+    )
+    st.subheader(
+        f"IMPORTANT: This demo app is no longer live. Live functionality can be recreated - see the [project walkthrough](https://medium.com/@ryanelamb/a-data-engineering-project-with-prefect-docker-terraform-google-cloudrun-bigquery-and-streamlit-3fc6e08b9398?source=friends_link&sk=c83c07681d2af63d8292c2bac9e4287a)"
     )
     st.write(
-        f"[Project GitHub](https://github.com/RyanEricLamb/data-engineering-bus-tracker) | [Project walkthrough](https://medium.com/@ryanelamb) | [Source data](https://data.bus-data.dft.gov.uk/) "
+        f"[Project GitHub](https://github.com/RyanEricLamb/data-engineering-bus-tracker) | [Project walkthrough](https://medium.com/@ryanelamb/a-data-engineering-project-with-prefect-docker-terraform-google-cloudrun-bigquery-and-streamlit-3fc6e08b9398?source=friends_link&sk=c83c07681d2af63d8292c2bac9e4287a) | [Source data](https://data.bus-data.dft.gov.uk/) "
     )
-    st.text(f"Click refresh below to update")
+    # st.text(f"Click refresh below to update")
 
     st_data = st_folium(m, width=725, returned_objects=[])
 

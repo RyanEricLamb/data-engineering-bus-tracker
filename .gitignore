@@ -235,6 +235,7 @@ secrets.toml
 
 bod_example.xml
 *.csv
+!late_buses.csv
 data
 data/
 tests
